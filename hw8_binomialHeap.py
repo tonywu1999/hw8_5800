@@ -64,6 +64,9 @@ class BinomialHeap:
             node.parent = None
             node = node.sibling
 
+        if len(root_stack) == 0 and len(child_queue) == 0:
+            self.head = self.head.sibling
+
         if len(root_stack) > 0 and len(child_queue) > 0:
             root_node = root_stack.pop()
             child_node = child_queue.pop(0)
@@ -171,13 +174,15 @@ class BinomialHeap:
 
 
 if __name__ == "__main__":
-    binomial_heap = BinomialHeap(5)
-    values = [3, 2, 6, 1, 10, 9, 4]
+    binomial_heap = BinomialHeap(10)
+    values = [20, 30, 15]
     for value in values:
         binomial_heap.insert(value)
-    print(binomial_heap.search(6).key)
-    binomial_heap.delete(6)
-    binomial_heap.search(6)
+    # print(binomial_heap.search(6).key)
+    binomial_heap.extract_min()
+    binomial_heap.decrease_key(20, 7)
+    binomial_heap.delete(7)
+    # binomial_heap.union(binomial_heap.search(), binomial_heap.search())
 
 
 
